@@ -1,5 +1,5 @@
 import FrontPage from "./components/FrontPage";
-import { Page, Text, View, Document, Image, Font } from "@react-pdf/renderer";
+import { Page, Text, View, Document, Image } from "@react-pdf/renderer";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { stylesPDF, tw } from "./Style";
@@ -18,7 +18,7 @@ type ChangeOrderPdfPost = {
   companyInformation: string;
 };
 
-type checklistPdfProps = {
+type ChangeOrderProps = {
   data: ChangeOrderPdfPost;
   formattedLogo: string;
   formattedSignature: string;
@@ -28,16 +28,16 @@ const styles = {
   boldHead: {
     fontFamily: "Inter",
     fontWeight: 600,
-    paddingTop: 16,
+    paddingTop: 24,
     fontSize: 12,
   },
 };
 
-export default function ChecklistPdf({
+export default function ChangeOrder({
   data,
   formattedLogo,
   formattedSignature,
-}: checklistPdfProps) {
+}: ChangeOrderProps) {
   const {
     title,
     description,
@@ -45,6 +45,9 @@ export default function ChecklistPdf({
     companyInformation,
     projectTitle,
     projectNumber,
+
+    hours,
+    cost,
   } = data;
 
   const ChangeOrder = (
@@ -58,14 +61,18 @@ export default function ChecklistPdf({
       <View style={tw(`${SectionStyle}`)}>
         <View style={tw(`mt-10`)}>
           <View>
-            <Text style={tw("text-h2")}>Dokumentasjon av avvik</Text>
+            <Text style={tw("text-h2")}>Enrdingsordre</Text>
           </View>
           <View style={tw("flex flex-row pt-10")}>
             <View style={{ width: "50%", paddingTop: 0 }}>
-              <Text style={styles.boldHead}>Prsjektnummer</Text>
-              <Text style={{ fontSize: 12 }}>{projectNumber}</Text>
-              <Text style={styles.boldHead}>Prsjektnummer</Text>
+              <Text style={styles.boldHead}>Prosjekt</Text>
               <Text style={{ fontSize: 12 }}>{projectTitle}</Text>
+              {projectNumber && (
+                <>
+                  <Text style={styles.boldHead}>Prosjektnummer</Text>
+                  <Text style={{ fontSize: 12 }}>{projectNumber}</Text>
+                </>
+              )}
             </View>
             <View style={{ width: "50%", paddingTop: 0 }}>
               <Text style={styles.boldHead}>Beskrivelse</Text>
@@ -73,8 +80,21 @@ export default function ChecklistPdf({
             </View>
           </View>
         </View>
+        <View style={tw(`flex flex-row pt-10`)}>
+          <View style={{ width: "50%" }}>
+            <Text style={stylesPDF.boldHead}>Kostand knyttet til avvik</Text>
+            <Text style={tw("text-system-gray text-md")}>NOK {cost},-</Text>
+          </View>
+          <View style={{ width: "50%" }}>
+            <Text style={stylesPDF.boldHead}>
+              Antall timer knyttet til avviket
+            </Text>
+            <Text style={tw("text-system-gray text-md")}>{hours} timer</Text>
+          </View>
+        </View>
       </View>
-      <View fixed style={tw(`${SectionStyle} absolute bottom-[100px] w-full `)}>
+
+      <View fixed style={tw(`absolute bottom-[100px] w-full px-10`)}>
         <Image style={{ width: 300 }} src={formattedSignature} />
       </View>
       <Footer dokumentasjonstype={"Sjekklistedokumentasjon"} />
@@ -82,14 +102,14 @@ export default function ChecklistPdf({
   );
   return (
     <Document>
-      {/* <FrontPage
+      <FrontPage
         title={"Enrdingsordre"}
         subtitle={title}
         projectNumber={projectNumber}
         logoSrc={formattedLogo}
-        customerInformation={customerInformation}
+        customerInformation={customerInformation ?? "-"}
         companyInformation={companyInformation}
-      /> */}
+      />
       {ChangeOrder}
     </Document>
   );

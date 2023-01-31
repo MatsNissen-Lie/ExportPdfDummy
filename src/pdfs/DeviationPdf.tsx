@@ -138,20 +138,6 @@ const DeviationPdf = ({
   projectNumber,
   logoSrc,
 }: DeviationPdfProps) => {
-  // console.log(base64);
-
-  // fetch(url)
-  //   .then((response) => response.blob())
-  //   .then(
-  //     (blob) =>
-  //       new Promise((resolve, reject) => {
-  //         const reader = new FileReader();
-  //         reader.onloadend = () => resolve(reader.result);
-  //         reader.onerror = reject;
-  //         reader.readAsDataURL(blob);
-  //       })
-  //   );
-
   const header = (
     <View
       fixed
@@ -298,7 +284,7 @@ const DeviationPdf = ({
           </View>
         </View>
       </View>
-      <Footer></Footer>
+      <Footer dokumentasjonstype={"Avviksdokumetasjon"} />
     </Page>
   );
   return (

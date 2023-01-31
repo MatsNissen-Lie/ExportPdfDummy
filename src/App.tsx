@@ -94,10 +94,10 @@ const MyDocument = () => (
       projectNumber: 123,
       projectTitle: "Movie star",
       customerInformation: "Mygo",
-      companyInformation: "Nisse hus AS",
+      companyInformation: "Nissehus ASA",
     }}
     formattedLogo={"/img/logo.png"}
-    formattedSignature={"/img/Original_Doge_meme.jpg"}
+    formattedSignature={"/img/sign.png"}
   />
 );
 
