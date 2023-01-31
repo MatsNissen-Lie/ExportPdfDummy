@@ -19,23 +19,15 @@ const FrontPage = ({
   customerInformation,
   companyInformation,
 }: FrontPageProps) => {
-  console.log(logoSrc);
   return (
     <Page size="A4" style={tw("bg-primary-100 relative font-inter")}>
       <View
-        style={tw("px-10 py-6 flex flex-row justify-between items-center ")}
+        style={tw(
+          "px-10 py-6 text-secondary-100 flex flex-row items-center w-full"
+        )}
       >
-        <View style={tw("w-1/2 text-lg flex-grow")}>
-          {logoSrc && logoSrc !== "" ? (
-            <Image style={{ width: 50 }} src={logoSrc} />
-          ) : (
-            <Text style={tw("text-white font-bold")}>Logo</Text>
-          )}
-        </View>
-        <View style={tw("w-1/2 flex flex-row text-secondary-100")}>
-          <Text>Laget med </Text>
-          <Text style={tw("font-bold")}>Skyworker</Text>
-        </View>
+        <Text>Laget med </Text>
+        <Text style={tw("font-bold")}>Skyworker</Text>
       </View>
 
       <View

@@ -11,17 +11,17 @@ const Header = ({ logoSrc }: HeaderProps) => {
     <View
       fixed
       style={tw(
-        "bg-primary-100 h-min-40 px-10 py-6 mb-6 flex flex-row justify-between items-center"
+        "h-min-40 px-10 py-6 mb-6 flex flex-row justify-between items-center"
       )}
     >
       <View style={tw("w-1/2 text-lg")}>
         {logoSrc ? (
           <Image style={{ width: 50 }} src={logoSrc} />
         ) : (
-          <Text style={tw("text-white font-bold")}>Logo</Text>
+          <Text style={tw("text-primary-110 font-bold")}>Logo</Text>
         )}
       </View>
-      <View style={tw("w-1/2 text-white")}>
+      <View style={tw("w-1/2 text-primary-110")}>
         <Text style={{ fontSize: 14 }}>{date}</Text>
       </View>
     </View>
